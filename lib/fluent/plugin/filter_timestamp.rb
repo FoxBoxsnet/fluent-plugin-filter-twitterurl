@@ -1,15 +1,14 @@
-
+require 'strptime'
 
 module Fluent
-  class TwitterUrl < Filter
-    Plugin.register_filter('twitterurl', self)
+  class TimestampFilter < Filter
+    Plugin.register_filter('timestamp', self)
 
-     config_param :key_screen_name,  :string, :default => 'user_screen_name'
-     config_param :key_twitter_id,   :string, :default => 'id'
-     config_param :key_postfix,      :string, :default => 'twitter_url'
+     config_param :key_time,         :string, :default => 'time'
+     config_param :key_format,       :string, :default => '%b %e %H:%M:%S'
+     config_param :key_postfix,      :string, :default => 'timestamp'
      config_param :remove_prefix,    :string, :default => nil
      config_param :add_prefix,       :string, :default => nil
-
 
     def configure(conf)
       super
@@ -22,8 +21,7 @@ module Fluent
       tag = (@add_prefix + '.' + tag) if @add_prefix
 
       es.each do |time,record|
-         urls = ["https://twitter.com/", record[@key_screen_name] , "/status/" , record[@key_twitter_id]]
-         record[@key_postfix] = urls.join rescue nil
+        record[@key_postfix] = Strptime.new(@key_format).exec(@key_time).strftime('%Y-%m-%dT%H:%M:%S%z') rescue nil
         new_es.add(time, record)
       end
       return new_es
