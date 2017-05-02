@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "fluent/plugin/filter/timestamp"
+require "fluent/plugin/filter/twitterurl"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

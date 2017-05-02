@@ -3,14 +3,14 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
-  spec.name          = "fluent-plugin-filter-timestamp"
+  spec.name          = "fluent-plugin-filter-twitterurl"
   spec.version       = "0.0.1"
   spec.authors       = ["Tokyo Home SOC"]
   spec.email         = ["github@homesoc.tokyo"]
 
-  spec.summary       = %q{Converts a timestamp.}
-  spec.description   = %q{Fluent plugin, Converts a timestamp.}
-  spec.homepage      = "https://github.com/tokyohomesoc/fluent-plugin-filter-timestamp"
+  spec.summary       = %q{Twitter Streaming API URL Generator.}
+  spec.description   = %q{Twitter Streaming API URL Generator.}
+  spec.homepage      = "https://github.com/tokyohomesoc/fluent-plugin-filter-twitterurl"
   spec.license       = "Apache-2.0"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
